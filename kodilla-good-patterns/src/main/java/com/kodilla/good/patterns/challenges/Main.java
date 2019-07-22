@@ -6,12 +6,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MovieStore movieStore = new MovieStore();
+//        MovieStore movieStore = new MovieStore();
 
-        String moviesTitles = movieStore.getMovies().entrySet().stream()
-                .flatMap(movie -> movie.getValue().stream())
-                .collect(Collectors.joining("!", "",""));
+        OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
+        OrderRequest orderRequest = orderRequestRetriever.retrieve();
+        OrderProcessor orderProcessor = new OrderProcessor(new MailSender(), new ProductOrderService(), new ProductOrderRepository());
 
-        System.out.println(moviesTitles);
+        orderProcessor.process(orderRequest);
+
+//        String moviesTitles = movieStore.getMovies().entrySet().stream()
+//                .flatMap(movie -> movie.getValue().stream())
+//                .collect(Collectors.joining("!", "",""));
+//
+//        System.out.println(moviesTitles);
     }
 }
