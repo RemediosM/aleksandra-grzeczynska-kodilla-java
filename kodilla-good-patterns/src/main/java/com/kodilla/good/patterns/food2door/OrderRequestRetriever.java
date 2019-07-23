@@ -1,15 +1,14 @@
 package com.kodilla.good.patterns.food2door;
 
-import java.time.LocalDateTime;
-
 public class OrderRequestRetriever {
 
     public OrderRequest retrieve() {
 
-        Merchant merchant = new Merchant("Lidl");
+        User user = new User("Jhon", "Smith");
         Product product = new Product("yoghurt");
-        int productQuantity = 1000;
+        int productQuantity = 10;
+        Deliverer deliverer = new Deliverer("DHL");
 
-        return new OrderRequest(merchant, product, productQuantity, new ExtraFoodShop());
+        return new OrderRequest(user, product, productQuantity, deliverer, new ExtraFoodShop());
     }
 }
