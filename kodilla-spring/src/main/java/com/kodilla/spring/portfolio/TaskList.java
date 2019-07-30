@@ -14,8 +14,8 @@ public class TaskList {
         tasks.add(task);
     }
 
-    public List<String> getTasks() {
-        return tasks;
+    public String getTask(int index) {
+        return tasks.get(index);
     }
 
     @Override
