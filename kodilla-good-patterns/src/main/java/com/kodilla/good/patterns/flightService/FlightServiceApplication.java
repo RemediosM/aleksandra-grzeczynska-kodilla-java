@@ -6,6 +6,6 @@ public class FlightServiceApplication {
         Flights flights = new Flights();
         FlightSearch flightSearch = new FlightSearch(flights);
 
-        flightSearch.showTheResults("From", "Berlin");
+        flightSearch.showTheResults("From", "Poznań");
     }
 }

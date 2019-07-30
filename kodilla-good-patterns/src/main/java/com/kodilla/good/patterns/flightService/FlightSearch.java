@@ -17,12 +17,6 @@ public class FlightSearch {
                 .collect(Collectors.toList());
         return flightFrom;
     }
-    public List<Flight> searchFlightTrough(String city) {
-        List<Flight> flightTrough = flights.getFlights().stream()
-                .filter(result -> result.getFlightThrough().equals(city))
-                .collect(Collectors.toList());
-        return flightTrough;
-    }
 
     public List<Flight> searchFlightTo(String city) {
         List<Flight> flightTo = flights.getFlights().stream()
@@ -36,8 +30,6 @@ public class FlightSearch {
             System.out.println(searchFlightTo(city));
         } else if(ask.equals("From")){
             System.out.println(searchFlightFrom(city));
-        } else if(ask.equals("Trough")){
-            System.out.println(searchFlightTrough(city));
         }
     }
 }
