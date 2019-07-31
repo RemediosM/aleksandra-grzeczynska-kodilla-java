@@ -25,6 +25,13 @@ public class FlightSearch {
         return flightTo;
     }
 
+    public List<Flight> searchFlightThrough(String city) {
+        List<Flight> flightTo = flights.getFlights().stream()
+                .filter(result -> result.getFlightTo().equals(city))
+                .collect(Collectors.toList());
+        return flightTo;
+    }
+
     public void showTheResults(String ask, String city) {
         if(ask.equals("To")){
             System.out.println(searchFlightTo(city));
