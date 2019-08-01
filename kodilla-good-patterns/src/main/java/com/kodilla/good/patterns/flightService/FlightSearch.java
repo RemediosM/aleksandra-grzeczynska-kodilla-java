@@ -7,36 +7,24 @@ public class FlightSearch {
 
     private Flights flights;
 
-    public FlightSearch(Flights flights) {
-        this.flights = flights;
+    public static void searchFrom(String from, Flights flights) {
+        flights.getFligts().entrySet().stream()
+                .filter(map -> map.getValue().getFlightFrom().equals(from))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
-
-    public List<Flight> searchFlightFrom(String city) {
-        List<Flight> flightFrom = flights.getFlights().stream()
-                .filter(result -> result.getFlightFrom().equals(city))
-                .collect(Collectors.toList());
-        return flightFrom;
+    public static void searchTo(String to, Flights flights) {
+        flights.getFligts().entrySet().stream()
+                .filter(map -> map.getValue().getFlightTo().equals(to))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
-
-    public List<Flight> searchFlightTo(String city) {
-        List<Flight> flightTo = flights.getFlights().stream()
-                .filter(result -> result.getFlightTo().equals(city))
-                .collect(Collectors.toList());
-        return flightTo;
-    }
-
-    public List<Flight> searchFlightThrough(String city) {
-        List<Flight> flightTo = flights.getFlights().stream()
-                .filter(result -> result.getFlightTo().equals(city))
-                .collect(Collectors.toList());
-        return flightTo;
-    }
-
-    public void showTheResults(String ask, String city) {
-        if(ask.equals("To")){
-            System.out.println(searchFlightTo(city));
-        } else if(ask.equals("From")){
-            System.out.println(searchFlightFrom(city));
-        }
+    public static void searchTransfer(String from, String to, String through, Flights flights) {
+        flights.getFligts().entrySet().stream()
+                .filter(map -> map.getValue().getFlightFrom().equals(from))
+                .filter(map -> map.getValue().getFlightTo().equals(to))
+                .filter(map -> map.getValue().getFlightThrough().equals(through))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
 }
