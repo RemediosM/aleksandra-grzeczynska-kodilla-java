@@ -16,7 +16,7 @@ public class FlightServiceApplication {
         System.out.println("\nFlights to: " + to);
         FlightSearch.searchTo(to, flights);
         System.out.println("\nFlights from: " + from + " to: " + to + " through: " + through);
-        FlightSearch.searchTransfer(from, to, through, flights);
+        FlightSearch.searchThrough(from, to, through, flights);
     }
 
 }

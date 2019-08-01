@@ -19,7 +19,7 @@ public class FlightSearch {
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
-    public static void searchTransfer(String from, String to, String through, Flights flights) {
+    public static void searchThrough(String from, String to, String through, Flights flights) {
         flights.getFligts().entrySet().stream()
                 .filter(map -> map.getValue().getFlightFrom().equals(from))
                 .filter(map -> map.getValue().getFlightTo().equals(to))
