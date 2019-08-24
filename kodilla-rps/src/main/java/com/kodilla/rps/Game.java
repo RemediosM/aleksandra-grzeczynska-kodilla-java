@@ -12,34 +12,34 @@ public class Game {
 
 
     public void rpsGame() {
+        System.out.println("Please enter the number of rounds.");
+        int rounds = scanner.nextInt();
 
-        Rps userMove = user.userMove();
+        while(scoreBoard.getRoundNo()< rounds) {
+            Rps userMove = user.userMove();
+            if (user.newGame(userMove)) {
+                System.out.println("Are you sure you want to start a new game? yes/no");
+                String input = scanner.next();
+                if (input.equals("yes")) {
+                    System.out.println("The new game begins...");
+                    scoreBoard.clearBoard();
+                    rpsGame();
 
-        if (user.newGame(userMove)) {
-            System.out.println("Are you sure you want to start a new game?");
-            String input = scanner.next();
-            if (input.equals("yes")) {
-                System.out.println("The new game begins...");
-                scoreBoard.clearBoard();
-                rpsGame();
-
-            } else {
-                System.out.println("Continue the game");
-                rpsGame();
+                } else {
+                    System.out.println("Continue the game");
+                }
             }
-        }
 
-        if (user.exitGame(userMove)) {
-            System.out.println("Are you sure you want to exit the game?");
-            String input = scanner.next();
-            if (input.equals("yes")) {
-                System.out.println("The game is over");
-                System.exit(0);
-            } else {
-                System.out.println("Continue the game");
-                rpsGame();
+            if (user.exitGame(userMove)) {
+                System.out.println("Are you sure you want to exit the game? yes/no");
+                String input = scanner.next();
+                if (input.equals("yes")) {
+                    System.out.println("The game is over");
+                    System.exit(0);
+                } else {
+                    System.out.println("Continue the game");
+                }
             }
-        }
             scoreBoard.addPlayerMove(userMove);
             Rps computerMove = computer.computerMove();
             scoreBoard.addComputerMove(computerMove);
@@ -54,23 +54,37 @@ public class Game {
                 System.out.println(computerMove + " beats " + userMove + ". You lose :(");
                 scoreBoard.addComputerScore();
             }
-            scoreBoard.nextRound();
             System.out.println(scoreBoard.toString());
+            scoreBoard.nextRound();
+
+        }
+        finishGame();
 
     }
-
     public void finishGame(){
         if(scoreBoard.getComputerScore() > scoreBoard.getPlayerScore()){
-            System.out.println("The winner is Computer. You're looser!");
+            System.out.println("The winner is Computer. You lost :(");
         } else if (scoreBoard.getComputerScore() < scoreBoard.getPlayerScore()) {
             System.out.println("The winner is Player. Congratulation!");
         } else {
             System.out.println("Nobody wins. It's a tie.");
         }
-    }
+        System.out.println("Press n to start new game. Press x to exit");
+        int x =0;
 
-    public int getRoundNo(){
-        return scoreBoard.getRoundNo();
+        do  {
+            String input = scanner.next();
+            if (input.equals("n")) {
+                System.out.println("The new game begins...");
+                scoreBoard.clearBoard();
+                rpsGame();
+            } else if (input.equals("x")) {
+                System.out.println("Exit");
+            }else {
+                System.out.printf("Press x or n");
+                x=3;
+
+        } }while (x !=0);
     }
 
     public void setUserName(){

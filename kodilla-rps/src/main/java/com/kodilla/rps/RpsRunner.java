@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class RpsRunner {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
         Game game = new Game();
         game.setUserName();
 
@@ -14,12 +13,7 @@ public class RpsRunner {
                 "To end the game press x.\n" +
                 "To start a new game press n");
 
-        System.out.println("Please enter the number of rounds.");
-
-        int rounds = scanner.nextInt();
-        while(game.getRoundNo()< rounds) {
-            game.rpsGame(); }
-        game.finishGame();
+        game.rpsGame();
 
     }
 }
